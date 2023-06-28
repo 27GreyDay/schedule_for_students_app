@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 import { COLORS } from './constants/theme';
 import DateUp from './components/Date'
 import Week from './components/Week'
-import { useFonts } from 'expo-font';
 import ScheduleTitle from './components/ScheduleTitle';
-import * as SplashScreen from 'expo-splash-screen';
+import Schedule from './components/Schedule';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,6 +44,7 @@ export default function App() {
       <DateUp date={d.getDate()} month={d.getMonth()} year={d.getFullYear()} week={d.getDay()}/>
       <Week date={d.getDate()} week={d.getDay()}/>
       <ScheduleTitle />
+      <Schedule />
     </View>
   );
 }

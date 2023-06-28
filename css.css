@@ -1,0 +1,136 @@
+/* 1 пара карточка */
+
+position: absolute;
+width: 286.83px;
+height: 152.88px;
+left: 91px;
+top: 262px;
+
+
+
+/* Rectangle 9 */
+
+position: absolute;
+width: 286.83px;
+height: 152.88px;
+left: 91px;
+top: 262px;
+
+background: #600095;
+border-radius: 16px;
+
+
+/* Переподаватель */
+
+position: absolute;
+width: 18px;
+height: 18px;
+left: 110px;
+top: 373px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+/* Light/900 | 100% */
+border: 1px solid #FFFFFF;
+
+
+/* Место проведения */
+
+position: absolute;
+width: 18px;
+height: 18px;
+left: 109.83px;
+top: 349.13px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 12.5%;
+bottom: 13.56%;
+
+/* Light/900 | 100% */
+border: 1px solid #FFFFFF;
+
+
+/* Структуры данных и алгорит-мы */
+
+position: absolute;
+width: 248px;
+height: 36px;
+left: 108.83px;
+top: 301.13px;
+
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+
+color: #FFFFFF;
+
+
+
+/* 12 корпус ауд.230 */
+
+position: absolute;
+width: 219px;
+height: 17px;
+left: 138.83px;
+top: 350.13px;
+
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+
+color: #FFFFFF;
+
+
+
+/* Грецова А. П. */
+
+position: absolute;
+width: 219px;
+height: 20px;
+left: 138.83px;
+top: 376.13px;
+
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+
+color: #FFFFFF;
+
+
+
+/* лекция */
+
+position: absolute;
+width: 165px;
+height: 23.96px;
+left: 109.83px;
+top: 275.13px;
+
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 18px;
+
+color: #FFFFFF;
+

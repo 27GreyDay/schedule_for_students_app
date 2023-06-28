@@ -4,24 +4,27 @@ import { COLORS } from '../constants/theme';
 const ScheduleTitle = () => {
   return ( 
     <View style={ styles.container }>
-      <View>
-        <Text>Время</Text>
-        <Text>Курс</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={styles.timeCourse}>Время</Text>
+        <Text style={styles.timeCourse}>Курс</Text>
       </View>
+      <TouchableOpacity>
+       <Image style={{width: 24, height: 24}} source={require('../assets/icons/edit.png')}/>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 5, 
-    paddingBottom: 5, 
+    paddingTop: 20,
     paddingLeft: 14, 
     paddingRight: 14, 
     flexDirection: 'row', 
     justifyContent: 'space-between',
   },
-  title: {
+  timeCourse: {
+    paddingRight: 33,
     fontFamily: 'Ubuntu-Medium', 
     fontSize: 14, 
     color: COLORS.white2,

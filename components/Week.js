@@ -38,7 +38,7 @@ const Week = props => {
       <TouchableOpacity key={index} style={
         [styles.container1, { backgroundColor: color ? COLORS.purple2 :  COLORS.black2}]
       } onPress={() => onPressButton(index)}>
-        <Text style={styles.wek}>{numWeek[index]}</Text>
+        <Text style={styles.week}>{numWeek[index]}</Text>
         <Text style={styles.day}>{
           getYesterday(props.week - index) < 10 ? '0' + getYesterday(props.week - index) : getYesterday(props.week - index)
         }</Text>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   day: {
     fontFamily: 'Ubuntu-Medium', 
-    fontSize: 14, 
+    fontSize: 16, 
     color: COLORS.white2,
   }
 });
