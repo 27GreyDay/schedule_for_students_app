@@ -7,6 +7,7 @@ import DateUp from './components/Date'
 import Week from './components/Week'
 import ScheduleTitle from './components/ScheduleTitle';
 import Schedule from './components/Schedule';
+import TabBar from './components/TabBar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,6 +46,7 @@ export default function App() {
       <Week date={d.getDate()} week={d.getDay()}/>
       <ScheduleTitle />
       <Schedule />
+      <TabBar/>
     </View>
   );
 }

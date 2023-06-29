@@ -18,6 +18,7 @@ const ScheduleTitle = () => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
+    paddingBottom: 10,
     paddingLeft: 14, 
     paddingRight: 14, 
     flexDirection: 'row', 
