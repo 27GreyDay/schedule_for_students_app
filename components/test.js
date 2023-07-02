@@ -260,3 +260,72 @@ const App = () => {
 };
 
 export default App;
+
+{data.map((obj) => (
+  <Text key={obj.mo.id}>{obj.mo.start_time}</Text>
+))}
+////////////////////////////////////////////////////////
+// Если вы используете функциональные компоненты с хуками, вам нужно импортировать React
+// и useState из библиотеки react, а затем создать функциональный компонент. Внутри 
+// функционального компонента вы можете использовать хук useState для изменения данных:
+
+import React, { useState } from 'react';
+
+const MyComponent = () => {
+  const [myData, setMyData] = useState({
+    0: [
+      {
+        id: 1,
+        start_time: "8:20",
+        end_time: "9:50",
+        type_pair: "лекция",
+        name_pair: "Структуры данных и алгоритмы",
+        auditorium: "12 корпус ауд.230",
+        teacher: "Грецова А. П."
+      },
+      {
+        id: 2,
+        start_time: "10:00",
+        end_time: "11:35",
+        type_pair: "практика",
+        name_pair: "Возрастная анатомия, физиология и гигиена",
+        auditorium: "12 корпус ауд.225В",
+        teacher: "Лыкова Е. Ю."
+      }
+    ],
+    1: [
+      {
+        id: 1,
+        start_time: "8:21",
+        end_time: "9:50",
+        type_pair: "лекция",
+        name_pair: "Структуры данных и алгоритмы",
+        auditorium: "12 корпус ауд.230",
+        teacher: "Грецова А. П."
+      },
+      {
+        id: 2,
+        start_time: "10:00",
+        end_time: "11:35",
+        type_pair: "практика",
+        name_pair: "Возрастная анатомия, физиология и гигиена",
+        auditorium: "12 корпус ауд.225В",
+        teacher: "Лыкова Е. Ю."
+      }
+    ]
+  });
+
+  const updateData = () => {
+    const newData = { ...myData }; // Создаем копию объекта myData
+    newData[0][0].start_time = "9:00"; // Изменяем значение свойства start_time
+    setMyData(newData); // Обновляем состояние компонента
+  };
+
+  return (
+    <div>
+      <button onClick={updateData}>Изменить данные</button>
+    </div>
+  );
+};
+
+export default MyComponent;
