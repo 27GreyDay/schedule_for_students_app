@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../constants/theme';
+import Schedule from './Schedule';
+import ScheduleTitle from './ScheduleTitle';
+import TabBar from './TabBar';
 
 function getYesterday(daysToSubtract) {
   const today = new Date();
@@ -9,11 +12,9 @@ function getYesterday(daysToSubtract) {
   return yesterday.getDate();
 }
 
-
 const Week = props => {
-  const [buttons, setButtons] = useState([false, false, false, false, false, false, false]);
+  const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);
   const numWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
-
   useEffect(() => { // возвращает день недели на место
     const currentWeek = [...buttons];
     const index1 = currentWeek.indexOf(true);
@@ -21,6 +22,11 @@ const Week = props => {
     currentWeek[props.week] = true;
     setButtons(currentWeek);
   }, [props.week]);
+
+  const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
+  const onEditAndSave = () => {
+    setEditAndSave(!editAndSave)
+  };
 
   const onPressButton = (index) => { // изменение цвета элемента при нажатии
     const newButtons = [...buttons];
@@ -31,20 +37,24 @@ const Week = props => {
     }
     setButtons(newButtons);
   };
-
   return (
+    <>
     <View style={styles.container}>
     {buttons.map((color, index) => (
       <TouchableOpacity key={index} style={
-        [styles.container1, { backgroundColor: color ? COLORS.purple2 :  COLORS.black2}]
+        [styles.container1, { backgroundColor: color ? COLORS.purple2 :  COLORS.black2 }]
       } onPress={() => onPressButton(index)}>
-        <Text style={styles.week}>{numWeek[index]}</Text>
-        <Text style={styles.day}>{
+        <Text style={ [styles.week, {color:  color ? COLORS.white :  COLORS.white2}]}>{numWeek[index]}</Text>
+        <Text style={ [styles.day, {color:  color ? COLORS.white :  COLORS.white2}]}>{
           getYesterday(props.week - index) < 10 ? '0' + getYesterday(props.week - index) : getYesterday(props.week - index)
         }</Text>
       </TouchableOpacity>
     ))}
     </View>
+    <ScheduleTitle fEditAndSave={onEditAndSave} editOrSave={editAndSave}/>
+    <Schedule buttonNumber={ buttons } editOrSave={editAndSave}/>
+    {editAndSave && <TabBar/>}
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -66,14 +76,12 @@ const styles = StyleSheet.create({
   },
   week: {
     fontFamily: 'Ubuntu-Medium', 
-    fontSize: 14, 
-    color: COLORS.white2,
+    fontSize: 14,
   },
   day: {
     fontFamily: 'Ubuntu-Medium', 
-    fontSize: 16, 
-    color: COLORS.white2,
+    fontSize: 16,
   }
 });
- 
+
 export default Week;

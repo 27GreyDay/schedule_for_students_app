@@ -1,15 +1,18 @@
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '../constants/theme';
 
-const ScheduleTitle = () => {
+const ScheduleTitle = props => {
+  
   return ( 
     <View style={ styles.container }>
       <View style={{ flexDirection: 'row' }}>
         <Text style={styles.timeCourse}>Время</Text>
         <Text style={styles.timeCourse}>Курс</Text>
       </View>
-      <TouchableOpacity>
-       <Image style={{width: 24, height: 24}} source={require('../assets/icons/edit.png')}/>
+      <TouchableOpacity onPress={props.fEditAndSave}>
+        {props.editOrSave ? <Image style={{width: 24, height: 24}} source={require('../assets/icons/edit.png')}/> : <Image style={{width: 24, height: 24}} source={require('../assets/icons/save.png')}/>}
+       
       </TouchableOpacity>
     </View>
   );
