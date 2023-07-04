@@ -12,7 +12,6 @@ const ScheduleTitle = props => {
       </View>
       <TouchableOpacity onPress={props.fEditAndSave}>
         {props.editOrSave ? <Image style={{width: 24, height: 24}} source={require('../assets/icons/edit.png')}/> : <Image style={{width: 24, height: 24}} source={require('../assets/icons/save.png')}/>}
-       
       </TouchableOpacity>
     </View>
   );

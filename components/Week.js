@@ -23,12 +23,9 @@ const Week = props => {
     setButtons(currentWeek);
   }, [props.week]);
 
-  const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
-  const onEditAndSave = () => {
-    setEditAndSave(!editAndSave)
-  };
+  
 
-  const onPressButton = (index) => { // изменение цвета элемента при нажатии
+  const onPressButton = (index) => { // изменение цвета элемента при нажатии и переключение между днями недели
     const newButtons = [...buttons];
     if (!newButtons[index]) {
       const index1 = newButtons.indexOf(true);
@@ -51,9 +48,9 @@ const Week = props => {
       </TouchableOpacity>
     ))}
     </View>
-    <ScheduleTitle fEditAndSave={onEditAndSave} editOrSave={editAndSave}/>
-    <Schedule buttonNumber={ buttons } editOrSave={editAndSave}/>
-    {editAndSave && <TabBar/>}
+    
+    <Schedule buttonNumber={ buttons }/>
+    
     </>
   );
 }
