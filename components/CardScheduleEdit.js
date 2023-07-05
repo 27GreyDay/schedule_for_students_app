@@ -4,12 +4,15 @@ import myData from '../constants/data';
 import { COLORS } from '../constants/theme';
 
 const CardScheduleEdit = props => {
-  const [teacherEdit, onTeacherEdit] = useState('');
-  const [time_start, setTime_start] = useState('');
-  const [time_end, setTime_end] = useState('');
-  const [type_course, setType_course] = useState(true) // для кнопки практика/лекция
-  const [type_week_cz, setType_week] = useState('числ/занм') // для кнопки числ/занм
-  const [type_week_count, setType_week_count] = useState(0)
+
+  const [teacherEdit, onTeacherEdit] = useState(props.elem.teacher);
+  const [namePairEdit, onNamePairEdit] = useState(props.elem.name_pair);
+  const [auditoriumEdit, onAuditoriumEdit] = useState(props.elem.auditorium);
+  const [typePairEdit, setTypePairEdit] = useState(props.elem.type_pair); // для кнопки практика/лекция
+  const [time_start, setTime_start] = useState(props.elem.start_time);
+  const [time_end, setTime_end] = useState(props.elem.end_time);
+  const [type_week_cz, setType_week] = useState('числ/занм'); // для кнопки числ/занм
+  const [type_week_count, setType_week_count] = useState(0);
 
   const onTypeWeek = () => { // для кнопки числ/занм
     let newTypeWeek = '';
@@ -29,9 +32,8 @@ const CardScheduleEdit = props => {
     setType_week_count(prev => prev + 1);
   };
 
-
   const onPracticeOrLecture = () => { // смена практики на лекцию и наоборот
-    setType_course(!type_course)
+    setTypePairEdit(typePairEdit === 'практика' ?  'лекция' : 'практика')
   }
 
   const timeStartChange = (input) => { // автоматическое проставление двоеточия
@@ -64,6 +66,18 @@ const CardScheduleEdit = props => {
     setTime_end(formattedText);
   };
 
+  const onSave = () => {
+    // Обновление значений в myData
+    props.elem.teacher = teacherEdit;
+    props.elem.auditorium = auditoriumEdit;
+    props.elem.name_pair = namePairEdit;
+    props.elem.type_pair = typePairEdit;
+    props.elem.start_time = time_start;
+    props.elem.end_time = time_end;
+  };
+
+  onSave();
+
   return ( 
     <View style={styles.container} >
       <View style={{ alignItems: 'flex-end', width: 44 }}>
@@ -78,7 +92,7 @@ const CardScheduleEdit = props => {
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
           <TouchableOpacity onPress={onPracticeOrLecture}>
-            <Text style={styles.typeCourse}>{type_course ?  'лекция' : 'практика'}</Text>
+            <Text style={styles.typeCourse}>{typePairEdit}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={onTypeWeek}>
@@ -87,12 +101,12 @@ const CardScheduleEdit = props => {
 
         </View>
 
-        <TextInput style={styles.course} placeholder='Название предмета' multiline numberOfLines={2} maxLength={50}/>
+        <TextInput style={styles.course} value={namePairEdit} onChangeText={text => onNamePairEdit(text)} placeholder='Название предмета' multiline numberOfLines={2} maxLength={50}/>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
           <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
-          <TextInput style={styles.textDown}  placeholder='Номер аудитории' maxLength={20}/>
+          <TextInput style={styles.textDown} value={auditoriumEdit} onChangeText={text => onAuditoriumEdit(text)} placeholder='Номер аудитории' maxLength={20}/>
           
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
