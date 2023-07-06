@@ -8,7 +8,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 4,
@@ -38,7 +38,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 6,
@@ -58,7 +58,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
 
   ],
@@ -71,7 +71,7 @@ const myData = {
       name_pair: "Структуры данных и алгоритмы",
       auditorium: "12 корпус ауд.310",
       teacher: "Кудрина Е. В.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 8,
@@ -81,7 +81,7 @@ const myData = {
       name_pair: "Элективные дисциплины по физической культуре и спорту",
       auditorium: "12 корпус ауд.225В",
       teacher: "Дунаев П. Д.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 9,
@@ -91,7 +91,7 @@ const myData = {
       name_pair: "Элективные дисциплины по физической культуре и спорту",
       auditorium: "12 корпус ауд.225В",
       teacher: "Миронов С. В.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 10,
@@ -101,7 +101,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 11,
@@ -111,7 +111,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 12,
@@ -121,19 +121,19 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
   ],
   2: [
     {
       id: 13,
-      start_time: "8:21",
-      end_time: "9:50",
+      start_time: "08:21",
+      end_time: "09:50",
       type_pair: "лекция",
       name_pair: "Структуры данных и алгоритмы",
       auditorium: "12 корпус ауд.230",
       teacher: "Грецова А. П.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 14,
@@ -143,7 +143,7 @@ const myData = {
       name_pair: "Возрастная анатомия, физиология и гигиена",
       auditorium: "12 корпус ауд.225В",
       teacher: "Лыкова Е. Ю.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 15,
@@ -153,7 +153,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 16,
@@ -163,7 +163,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 17,
@@ -173,7 +173,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 18,
@@ -183,19 +183,19 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
   ],
   3: [
     {
       id: 19,
-      start_time: "8:22",
-      end_time: "9:50",
+      start_time: "08:22",
+      end_time: "09:50",
       type_pair: "лекция",
       name_pair: "Структуры данных и алгоритмы",
       auditorium: "12 корпус ауд.230",
       teacher: "Грецова А. П.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 20,
@@ -205,7 +205,7 @@ const myData = {
       name_pair: "Возрастная анатомия, физиология и гигиена",
       auditorium: "12 корпус ауд.225В",
       teacher: "Лыкова Е. Ю.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 21,
@@ -215,7 +215,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 22,
@@ -225,7 +225,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 23,
@@ -235,7 +235,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 24,
@@ -245,19 +245,19 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
   ],
   4: [
     {
       id: 25,
-      start_time: "8:23",
-      end_time: "9:50",
+      start_time: "08:23",
+      end_time: "09:50",
       type_pair: "лекция",
       name_pair: "Структуры данных и алгоритмы",
       auditorium: "12 корпус ауд.230",
       teacher: "Грецова А. П.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 26,
@@ -267,7 +267,7 @@ const myData = {
       name_pair: "Возрастная анатомия, физиология и гигиена",
       auditorium: "12 корпус ауд.225В",
       teacher: "Лыкова Е. Ю.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 27,
@@ -277,7 +277,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 28,
@@ -287,7 +287,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 29,
@@ -297,7 +297,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 30,
@@ -307,19 +307,19 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
   ],
   5: [
     {
       id: 31,
-      start_time: "8:24",
+      start_time: "08:24",
       end_time: "9:50",
       type_pair: "лекция",
       name_pair: "Структуры данных и алгоритмы",
       auditorium: "12 корпус ауд.230",
       teacher: "Грецова А. П.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 32,
@@ -329,7 +329,7 @@ const myData = {
       name_pair: "Возрастная анатомия, физиология и гигиена",
       auditorium: "12 корпус ауд.225В",
       teacher: "Лыкова Е. Ю.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 33,
@@ -339,7 +339,7 @@ const myData = {
       name_pair: "Похуизм и эгоизм",
       auditorium: "миллеровская 15 к. 293",
       teacher: "Зельцер С. Н.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 34,
@@ -349,7 +349,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 35,
@@ -359,7 +359,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 36,
@@ -369,19 +369,19 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
   ],
   6: [
     {
       id: 37,
-      start_time: "8:20",
-      end_time: "9:50",
+      start_time: "08:20",
+      end_time: "09:50",
       type_pair: "практика",
       name_pair: "Иностранный язык",
       auditorium: "12 корпус ауд.302",
       teacher: "Уколова М. В.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 38,
@@ -391,7 +391,7 @@ const myData = {
       name_pair: "Структуры и алгоритмы компьютерной обработки данныха",
       auditorium: "12 корпус ауд.416а",
       teacher: "Кудрина Е. В.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 39,
@@ -401,7 +401,7 @@ const myData = {
       name_pair: "Разработка ПО",
       auditorium: "12 корпус ауд.302",
       teacher: "Чернышова Г. Ю.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 40,
@@ -411,7 +411,7 @@ const myData = {
       name_pair: "Проектирование информационных систем",
       auditorium: "12 корпус ауд.333",
       teacher: "Кабанова Л. В.",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 41,
@@ -421,7 +421,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     },
     {
       id: 42,
@@ -431,7 +431,7 @@ const myData = {
       name_pair: "",
       auditorium: "",
       teacher: "",
-      type_week: "",
+      type_week: "числ/знам",
     }
     
   ]

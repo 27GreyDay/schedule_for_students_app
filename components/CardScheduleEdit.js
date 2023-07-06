@@ -11,7 +11,7 @@ const CardScheduleEdit = props => {
   const [typePairEdit, setTypePairEdit] = useState(props.elem.type_pair); // для кнопки практика/лекция
   const [time_start, setTime_start] = useState(props.elem.start_time);
   const [time_end, setTime_end] = useState(props.elem.end_time);
-  const [type_week_cz, setType_week] = useState('числ/занм'); // для кнопки числ/занм
+  const [type_week_cz, setType_week] = useState(props.elem.type_week); // для кнопки числ/занм
   const [type_week_count, setType_week_count] = useState(0);
 
   const onTypeWeek = () => { // для кнопки числ/занм
@@ -74,6 +74,7 @@ const CardScheduleEdit = props => {
     props.elem.type_pair = typePairEdit;
     props.elem.start_time = time_start;
     props.elem.end_time = time_end;
+    props.elem.type_week = type_week_cz
   };
 
   onSave();

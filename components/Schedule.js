@@ -8,7 +8,7 @@ import TabBar from './TabBar';
 
 
 const Schedule = props => { // Отрисовка карточек с расписание
-
+  const denOrNum = props.dn ? (props.denominatorOrNumerator ? 'знаменатель' : 'числитель') : (!props.denominatorOrNumerator ? 'знаменатель' : 'числитель')
   const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
   const onEditAndSave = () => {
     setEditAndSave(!editAndSave)
@@ -20,7 +20,7 @@ const Schedule = props => { // Отрисовка карточек с распи
     <ScrollView>
       {myData[props.buttonNumber.indexOf(true)].map(item => {
         if (editAndSave) {
-          if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher)  
+          if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher && item.type_week !== denOrNum)  
             return (
               <View style={styles.container} key={item.id}>
                 <View style={{ alignItems: 'flex-end', width: 44 }}>

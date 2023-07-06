@@ -11,16 +11,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
-  const [d, setDate] = useState(new Date());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDate(new Date());
-    }, 60000); // обновляем каждую минуту дату
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   const [fontsLoaded] = useFonts({ // шрифты
         'Ubuntu-Bold': require('./assets/fonts/Ubuntu-Bold.ttf'),
         'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -42,8 +32,7 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
-      <DateUp date={d.getDate()} month={d.getMonth()} year={d.getFullYear()} week={d.getDay()}/>
-      <Week date={d.getDate()} week={d.getDay()} />
+      <Week />
     </View>
   );
 }
