@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
 import { COLORS } from '../constants/theme';
 import myData from '../constants/data';
@@ -15,49 +15,49 @@ const Schedule = props => { // Отрисовка карточек с распи
   };
   return (
     <>
-    <ScheduleTitle fEditAndSave={onEditAndSave} editOrSave={editAndSave}/>
-    <SafeAreaView style={styles.containerV}>
-    <ScrollView>
-      {myData[props.buttonNumber.indexOf(true)].map(item => {
-        if (editAndSave) {
-          if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher && item.type_week !== denOrNum)  
-            return (
-              <View style={styles.container} key={item.id}>
-                <View style={{ alignItems: 'flex-end', width: 44 }}>
-                  <Text style={{ fontFamily: 'Ubuntu-Medium', fontSize: 16, color: COLORS.white, paddingBottom: 14 }}>{item.start_time}</Text>
-                  <Text style={{ fontFamily: 'Ubuntu-Medium', fontSize: 14, color: COLORS.white2 }}>{item.end_time}</Text>
-                </View>
-                <View style={styles.line}></View>
-                <View style={styles.card}>
-                  <Text style={styles.typeCourse}>{item.type_pair}</Text>
-                  <Text style={styles.course}>{item.name_pair}</Text>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
-                    <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
-                    <Text style={styles.textDown}>{item.auditorium}</Text>
+      <ScheduleTitle fEditAndSave={onEditAndSave} editOrSave={editAndSave} />
+      <SafeAreaView style={styles.containerV}>
+        <ScrollView>
+          {myData[props.buttonNumber.indexOf(true)].map(item => {
+            if (editAndSave) {
+              if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher && item.type_week !== denOrNum) {
+                return (
+                  <View style={styles.container} key={item.id}>
+                    <View style={{ alignItems: 'flex-end', width: 44 }}>
+                      <Text style={{ fontFamily: 'Ubuntu-Medium', fontSize: 16, color: COLORS.white, paddingBottom: 14 }}>{item.start_time}</Text>
+                      <Text style={{ fontFamily: 'Ubuntu-Medium', fontSize: 14, color: COLORS.white2 }}>{item.end_time}</Text>
+                    </View>
+                    <View style={styles.line}></View>
+                    <View style={styles.card}>
+                      <Text style={styles.typeCourse}>{item.type_pair}</Text>
+                      <Text style={styles.course}>{item.name_pair}</Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
+                        <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
+                        <Text style={styles.textDown}>{item.auditorium}</Text>
+                      </View>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
+                        <Image style={{ width: 18, height: 18 }} source={require('../assets/icons/name.png')} />
+                        <Text style={styles.textDown}>{item.teacher}</Text>
+                      </View>
+                    </View>
                   </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
-                    <Image style={{ width: 18, height: 18 }} source={require('../assets/icons/name.png')} />
-                    <Text style={styles.textDown}>{item.teacher}</Text>
-                  </View>
-                </View>
-              </View>
-            )
-          else if ((item.id - 1) % 6 === 0 && !(item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher))
-            return (
-              <Image style={{ marginTop: 100 ,width: '100%', height: 280 }} source={require('../assets/catslip.jpg')} key={item.id}/>
-            )
-          }
-        else {
-          return(
-            <CardScheduleEdit elem={item} key={item.id}/>
-          )
-        }
-      })}
-      </ScrollView>
-    </SafeAreaView>
-    {editAndSave && <TabBar/>}
+                );
+              } else if ((item.id - 1) % 6 === 0 && !(item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher)) {
+                return (
+                  <Image style={{ marginTop: 'auto', marginBottom: 'auto', width: '100%', height: 280 }} source={require('../assets/catslip.jpg')} key={item.id} />
+                );
+              }
+            } else {
+              return (
+                <CardScheduleEdit elem={item} key={item.id} />
+              );
+            }
+          })}
+        </ScrollView>
+      </SafeAreaView>
+      {editAndSave && <TabBar />}
     </>
-  );
+  );  
 }
 const styles = StyleSheet.create({
   containerV: {
@@ -74,17 +74,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu-Regular',
     fontSize: 12,
     paddingLeft: 11,
+    color: COLORS.white
   },
   course: {
     height: 55,
     fontFamily: 'Ubuntu-Bold',
     fontSize: 16,
+    color: COLORS.white
   },
   typeCourse: {
     fontFamily: 'Ubuntu-Light',
     textTransform: 'uppercase',
     fontSize: 14,
-    paddingBottom: 8
+    paddingBottom: 8,
+    color: COLORS.white
   },
   card: {
     backgroundColor: COLORS.purple2,

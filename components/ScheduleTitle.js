@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '../constants/theme';
 

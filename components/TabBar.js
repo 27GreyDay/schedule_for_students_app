@@ -18,7 +18,7 @@ const TabBar = () => {
 }
 const styles = StyleSheet.create({
   containerTabBar: {
-    height: 80,
+    height: 70,
     backgroundColor: COLORS.black2,
     flexDirection: 'row',
     justifyContent: 'space-around',
