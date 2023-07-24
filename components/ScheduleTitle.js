@@ -1,16 +1,52 @@
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Animated, Image } from 'react-native';
 import { COLORS } from '../constants/theme';
+import WarningMod from './WarningMod';
+import { useState } from 'react';
 
 const ScheduleTitle = props => {
-  
-  return ( 
-    <View style={ styles.container }>
+  const [modalVisible, setModalVisible] = useState(false);
+
+  return (
+    <View style={styles.container}>
+      <WarningMod modalVisible={modalVisible} setModalVisible={setModalVisible} clear={props.clear} fEditAndSave={props.fEditAndSave}/>
       <View style={{ flexDirection: 'row' }}>
         <Text style={styles.timeCourse}>Время</Text>
         <Text style={styles.timeCourse}>Курс</Text>
       </View>
-      <TouchableOpacity onPress={props.fEditAndSave}>
-        {props.editOrSave ? <Image style={{width: 24, height: 24}} source={require('../assets/icons/edit.png')}/> : <Image style={{width: 24, height: 24}} source={require('../assets/icons/save.png')}/>}
+
+      <TouchableOpacity onPress={() => {
+        setModalVisible(!modalVisible); 
+        props.fEditAndSave();
+      }}>
+        {!props.editAndSave && (
+          <Image
+            style={ styles.button }
+            source={require('../assets/icons/delete.png')} 
+          />
+        )}
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => props.setSaveCards(!props.saveCards)}>
+        {!props.editAndSave && (
+          <Image
+            style={ styles.button }
+            source={require('../assets/icons/save.png')}
+          />
+        )}
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => props.setEditAndSave(!props.editAndSave)}>
+        {props.editAndSave ? (
+          <Image
+            style={ styles.button }
+            source={require('../assets/icons/edit.png')}
+          />
+        ) : (
+          <Image
+            style={ styles.button }
+            source={require('../assets/icons/close.png')}
+          />
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -25,11 +61,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-between',
   },
+  button: {
+    width: 24,
+    height: 24,
+  },
   timeCourse: {
     paddingRight: 33,
     fontFamily: 'Ubuntu-Medium', 
     fontSize: 14, 
     color: COLORS.white2,
+    marginRight: 10,
   } 
 });
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native';
 import { COLORS } from '../constants/theme';
 
 const CardScheduleEdit = props => {
@@ -12,6 +12,7 @@ const CardScheduleEdit = props => {
   const [timeEnd, setTimeEnd] = useState(props.elem.end_time);
   const [typeWeek, setTypeWeek ] = useState(props.elem.type_week); // для кнопки числ/занм
   const [typeWeekCount, setTypeWeekCount] = useState(0);
+
 
   const onTypeWeek = () => { // для кнопки числ/занм
     let newTypeWeek = '';
@@ -35,6 +36,19 @@ const CardScheduleEdit = props => {
     setTypePairEdit(typePairEdit === 'практика' ?  'лекция' : 'практика')
   }
 
+  const addMinutes = (time, minutes) => {
+    const [hours, mins] = time.split(":").map(Number);
+    
+    const totalMins = hours * 60 + mins + minutes;
+    const newHours = Math.floor(totalMins / 60);
+    const newMins = totalMins % 60;
+    
+    const formattedHours = String(newHours).padStart(2, '0');
+    const formattedMins = String(newMins).padStart(2, '0');
+    
+    return `${formattedHours}:${formattedMins}`;
+  }
+
   const formatTime = (input) => {
     let formattedText = input;
     formattedText = formattedText.replace(/\D/g, '');
@@ -49,12 +63,19 @@ const CardScheduleEdit = props => {
   };
   
   const timeStartChange = (input) => {
-    setTimeStart(formatTime(input));
+    const formattedText = formatTime(input);
+    if (formattedText.length === 5) {
+      setTimeEnd(addMinutes(formattedText, 90))
+      setTimeStart(formattedText);
+    } else
+      setTimeStart(formattedText);
+    if (formattedText === '')
+      setTimeEnd('')
   };
   
   const timeEndChange = (input) => {
     setTimeEnd(formatTime(input));
-  };
+  }; 
   
 
   const onSave = () => {
@@ -66,24 +87,27 @@ const CardScheduleEdit = props => {
     props.elem.start_time = timeStart;
     props.elem.end_time = timeEnd;
     props.elem.type_week = typeWeek
+    console.log(123)
   };
 
   useEffect(() => {
     onSave();
-  }, [teacherEdit, auditoriumEdit, namePairEdit, typePairEdit, timeStart, timeEnd, typeWeek]);
+  }, [props.saveCards]);
+
+
 
   return ( 
     <View style={styles.container} >
-      <View style={styles.timeContainer}>
+      <View style={{ alignItems: 'flex-end', width: 44 }}>
 
-        <TextInput style={styles.timeInput} placeholder='00:00' placeholderTextColor={COLORS.white2} keyboardType="numeric" value={timeStart} onChangeText={timeStartChange} maxLength={5}/>
+        <TextInput style={{ fontFamily: 'Ubuntu-Medium', fontSize: 16, color: COLORS.white, paddingBottom: 14, width: 41 }} placeholder='00:00' placeholderTextColor={COLORS.white2} keyboardType="numeric" value={timeStart} onChangeText={timeStartChange} maxLength={5}/>
 
-        <TextInput style={styles.timeInput} placeholder='00:00' placeholderTextColor={COLORS.white2}  keyboardType="numeric" value={timeEnd} onChangeText={timeEndChange} maxLength={5} />
+        <TextInput style={{ fontFamily: 'Ubuntu-Medium', fontSize: 14, color: COLORS.white2, width: 36 }} placeholder='00:00' placeholderTextColor={COLORS.white2}  keyboardType="numeric" value={timeEnd} onChangeText={timeEndChange} maxLength={5} />
 
       </View>
       <View style={styles.line}></View>
       <View style={styles.card}>
-        <View style={styles.row}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
           <TouchableOpacity onPress={onPracticeOrLecture}>
             <Text style={styles.typeCourse}>{typePairEdit}</Text>
@@ -97,17 +121,17 @@ const CardScheduleEdit = props => {
 
         <TextInput style={styles.course} value={namePairEdit} onChangeText={text => setNamePairEdit(text)} placeholder='Название предмета' placeholderTextColor={COLORS.white3} multiline numberOfLines={2} maxLength={50}/>
 
-        <View style={styles.row}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
-          <Image style={styles.icon} source={require('../assets/icons/where.png')} />
+          <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
           <TextInput style={styles.textDown} value={auditoriumEdit} onChangeText={text => setAuditoriumEdit(text)} placeholder='Номер аудитории' placeholderTextColor={COLORS.white3}  maxLength={20}/>
           
         </View>
-        <View style={styles.row}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
-          <Image style={styles.icon} source={require('../assets/icons/name.png')} />
+          <Image style={{ width: 18, height: 18 }} source={require('../assets/icons/name.png')} />
           <TextInput style={styles.textDown} value={teacherEdit} onChangeText={text => setTeacherEdit(text)} placeholder='ФИО преподавателя' placeholderTextColor={COLORS.white3} maxLength={20}/>
-
+    
         </View>
       </View>
     </View>
@@ -120,21 +144,6 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     paddingRight: 14,
     flexDirection: 'row',
-  },
-  timeContainer: {
-    alignItems: 'flex-end',
-    width: 44
-  },
-  timeInput: {
-    fontFamily: 'Ubuntu-Medium',
-    fontSize: 16,
-    color: COLORS.white,
-    paddingBottom: 14,
-    width: 41
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
   },
   textDown: {
     fontFamily: 'Ubuntu-Regular',
@@ -169,10 +178,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 3,
     backgroundColor: COLORS.black2
-  },
-  icon: {
-    width: 16,
-    height: 18
   }
-});
+}); 
 export default CardScheduleEdit;

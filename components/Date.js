@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   weekContainer: {
     paddingLeft: 10,
-    paddingTop: 7,
+    paddingTop: 3,
   },
   weekText: {
     fontFamily: 'Ubuntu-Medium',
@@ -61,14 +61,15 @@ const styles = StyleSheet.create({
     height: 40,
     marginTop: 7,
     alignItems: 'center',
-    backgroundColor: '#100621',
+    backgroundColor: COLORS.purple,
+    opacity: 0.5,
     justifyContent: 'center',
     borderRadius: 8,
   },
   buttonText: {
     fontFamily: 'Ubuntu-Bold',
     fontSize: 16,
-    color: COLORS.purple,
+    color: COLORS.white2,
   },
 });
  

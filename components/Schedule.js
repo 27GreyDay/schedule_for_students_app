@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, Animated } from 'react-native';
 import { COLORS } from '../constants/theme';
 import myData from '../constants/data';
 import CardScheduleEdit from './CardScheduleEdit';
@@ -10,12 +10,22 @@ import TabBar from './TabBar';
 const Schedule = props => { // Отрисовка карточек с расписание
   const denOrNum = props.dn ? (props.denominatorOrNumerator ? 'знаменатель' : 'числитель') : (!props.denominatorOrNumerator ? 'знаменатель' : 'числитель')
   const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
-  const onEditAndSave = () => {
-    setEditAndSave(!editAndSave)
-  };
+
+  const [saveCards, setSaveCards] = useState(false);
+  
+  const clear = () => { // Удаление дня недели
+    myData[props.buttonNumber.indexOf(true)].map(item => {
+      item.type_pair = "лекция"
+      item.name_pair = ""
+      item.auditorium = ""
+      item.teacher = ""
+      item.type_week = "числ/знам"
+    })
+  }
+
   return (
     <>
-      <ScheduleTitle fEditAndSave={onEditAndSave} editOrSave={editAndSave} />
+      <ScheduleTitle setEditAndSave={setEditAndSave} editAndSave={editAndSave} saveCards={saveCards} setSaveCards={setSaveCards}  clear={clear}/>
       <SafeAreaView style={styles.containerV}>
         <ScrollView>
           {myData[props.buttonNumber.indexOf(true)].map(item => {
@@ -44,12 +54,12 @@ const Schedule = props => { // Отрисовка карточек с распи
                 );
               } else if ((item.id - 1) % 6 === 0 && !(item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher)) {
                 return (
-                  <Image style={{ marginTop: 'auto', marginBottom: 'auto', width: '100%', height: 280 }} source={require('../assets/catslip.jpg')} key={item.id} />
+                  <Image style={{ marginTop: 50, width: '100%', height: 280 }} source={require('../assets/catslip.jpg')} key={item.id} />
                 );
               }
             } else {
-              return (
-                <CardScheduleEdit elem={item} key={item.id} />
+                return (
+                  <CardScheduleEdit elem={item} key={item.id} saveCards={saveCards} setSaveCards={setSaveCards}/>
               );
             }
           })}
