@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView, Animated } from 'react-native';
-import { COLORS } from '../constants/theme';
-import myData from '../constants/data';
+import { COLORS } from '../../../constants/theme';
+import myData from '../../../constants/data';
 import CardScheduleEdit from './CardScheduleEdit';
 import ScheduleTitle from './ScheduleTitle';
-import TabBar from './TabBar';
 
 
 const Schedule = props => { // Отрисовка карточек с расписание
   const denOrNum = props.dn ? (props.denominatorOrNumerator ? 'знаменатель' : 'числитель') : (!props.denominatorOrNumerator ? 'знаменатель' : 'числитель')
-  const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
-
-  const [saveCards, setSaveCards] = useState(false);
   
+  const [saveCards, setSaveCards] = useState(false);
+
   const clear = () => { // Удаление дня недели
     myData[props.buttonNumber.indexOf(true)].map(item => {
       item.type_pair = "лекция"
@@ -25,11 +23,11 @@ const Schedule = props => { // Отрисовка карточек с распи
 
   return (
     <>
-      <ScheduleTitle setEditAndSave={setEditAndSave} editAndSave={editAndSave} saveCards={saveCards} setSaveCards={setSaveCards}  clear={clear}/>
+      <ScheduleTitle fEditAndSave={props.fEditAndSave} editAndSave={props.editAndSave} saveCards={saveCards} setSaveCards={setSaveCards}  clear={clear}/>
       <SafeAreaView style={styles.containerV}>
         <ScrollView>
           {myData[props.buttonNumber.indexOf(true)].map(item => {
-            if (editAndSave) {
+            if (props.editAndSave) {
               if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher && item.type_week !== denOrNum) {
                 return (
                   <View style={styles.container} key={item.id}>
@@ -42,11 +40,11 @@ const Schedule = props => { // Отрисовка карточек с распи
                       <Text style={styles.typeCourse}>{item.type_pair}</Text>
                       <Text style={styles.course}>{item.name_pair}</Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
-                        <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
+                        <Image style={{ width: 16, height: 18 }} source={require('../../../assets/icons/where.png')} />
                         <Text style={styles.textDown}>{item.auditorium}</Text>
                       </View>
                       <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
-                        <Image style={{ width: 18, height: 18 }} source={require('../assets/icons/name.png')} />
+                        <Image style={{ width: 18, height: 18 }} source={require('../../../assets/icons/name.png')} />
                         <Text style={styles.textDown}>{item.teacher}</Text>
                       </View>
                     </View>
@@ -54,7 +52,7 @@ const Schedule = props => { // Отрисовка карточек с распи
                 );
               } else if ((item.id - 1) % 6 === 0 && !(item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher)) {
                 return (
-                  <Image style={{ marginTop: 50, width: '100%', height: 280 }} source={require('../assets/catslip.jpg')} key={item.id} />
+                  <Image style={{ marginTop: 50, width: '100%', height: 280 }} source={require('../../../assets/catslip.jpg')} key={item.id} />
                 );
               }
             } else {
@@ -65,7 +63,6 @@ const Schedule = props => { // Отрисовка карточек с распи
           })}
         </ScrollView>
       </SafeAreaView>
-      {editAndSave && <TabBar />}
     </>
   );  
 }

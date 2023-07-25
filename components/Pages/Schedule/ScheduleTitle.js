@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, TouchableOpacity, Animated, Image } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../../../constants/theme';
 import WarningMod from './WarningMod';
 import { useState } from 'react';
 
@@ -21,7 +21,7 @@ const ScheduleTitle = props => {
         {!props.editAndSave && (
           <Image
             style={ styles.button }
-            source={require('../assets/icons/delete.png')} 
+            source={require('../../../assets/icons/delete.png')} 
           />
         )}
       </TouchableOpacity>
@@ -30,21 +30,21 @@ const ScheduleTitle = props => {
         {!props.editAndSave && (
           <Image
             style={ styles.button }
-            source={require('../assets/icons/save.png')}
+            source={require('../../../assets/icons/save.png')}
           />
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => props.setEditAndSave(!props.editAndSave)}>
+      <TouchableOpacity onPress={() => props.fEditAndSave()}>
         {props.editAndSave ? (
           <Image
             style={ styles.button }
-            source={require('../assets/icons/edit.png')}
+            source={require('../../../assets/icons/edit.png')}
           />
         ) : (
           <Image
             style={ styles.button }
-            source={require('../assets/icons/close.png')}
+            source={require('../../../assets/icons/close.png')}
           />
         )}
       </TouchableOpacity>

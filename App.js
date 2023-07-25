@@ -3,14 +3,17 @@ import { View, Text } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { COLORS } from './constants/theme';
-import DateUp from './components/Date'
-import Week from './components/Week'
-import TabBar from './components/TabBar';
+import Week from './components/Pages/Schedule/Week';
+import TabBar from './components/TabBar'
+import Settings from './components/Pages/Settings/Settings';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
+  const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
+  const fEditAndSave = () => {
+    setEditAndSave(!editAndSave)
+  }
   const [fontsLoaded] = useFonts({ // шрифты
         'Ubuntu-Bold': require('./assets/fonts/Ubuntu-Bold.ttf'),
         'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -32,7 +35,9 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
-      <Week />
+      {/* <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave}/> */}
+      <Settings />
+      {editAndSave && <TabBar />}
     </View>
   );
 }

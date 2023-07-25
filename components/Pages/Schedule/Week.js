@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../../../constants/theme';
 import Schedule from './Schedule';
 import DateUp from './Date'
 
 
 
-const Week = () => {
+const Week = props => {
 
   const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);
   const numWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
@@ -120,6 +120,8 @@ const Week = () => {
         buttonNumber={buttons}
         denominatorOrNumerator={fDenominatorOrNumerator()}
         dn={choice}
+        fEditAndSave={props.fEditAndSave}
+        editAndSave={props.editAndSave}
       />
     </>
   );

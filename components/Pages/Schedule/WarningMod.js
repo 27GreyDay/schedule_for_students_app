@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../../../constants/theme';
 
 const WarningMod = ({ modalVisible, setModalVisible, clear, fEditAndSave}) => {
   const closeModal = () => {

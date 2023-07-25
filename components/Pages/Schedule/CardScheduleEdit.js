@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../../../constants/theme';
+
 
 const CardScheduleEdit = props => {
 
@@ -12,7 +13,6 @@ const CardScheduleEdit = props => {
   const [timeEnd, setTimeEnd] = useState(props.elem.end_time);
   const [typeWeek, setTypeWeek ] = useState(props.elem.type_week); // для кнопки числ/занм
   const [typeWeekCount, setTypeWeekCount] = useState(0);
-
 
   const onTypeWeek = () => { // для кнопки числ/занм
     let newTypeWeek = '';
@@ -87,7 +87,6 @@ const CardScheduleEdit = props => {
     props.elem.start_time = timeStart;
     props.elem.end_time = timeEnd;
     props.elem.type_week = typeWeek
-    console.log(123)
   };
 
   useEffect(() => {
@@ -123,15 +122,15 @@ const CardScheduleEdit = props => {
 
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
-          <Image style={{ width: 16, height: 18 }} source={require('../assets/icons/where.png')} />
+          <Image style={{ width: 16, height: 18 }} source={require('../../../assets/icons/where.png')} />
           <TextInput style={styles.textDown} value={auditoriumEdit} onChangeText={text => setAuditoriumEdit(text)} placeholder='Номер аудитории' placeholderTextColor={COLORS.white3}  maxLength={20}/>
           
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
-          <Image style={{ width: 18, height: 18 }} source={require('../assets/icons/name.png')} />
+          <Image style={{ width: 18, height: 18 }} source={require('../../../assets/icons/name.png')} />
           <TextInput style={styles.textDown} value={teacherEdit} onChangeText={text => setTeacherEdit(text)} placeholder='ФИО преподавателя' placeholderTextColor={COLORS.white3} maxLength={20}/>
-    
+
         </View>
       </View>
     </View>
