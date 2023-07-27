@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { COLORS } from './constants/theme';
 import Week from './components/Pages/Schedule/Week';
-import TabBar from './components/TabBar'
+import TabBar from './components/Router/TabBar'
 import Settings from './components/Pages/Settings/Settings';
+import Todo from './components/Pages/Todo/Todo'
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [router, setRouter] = useState([false, true, false]) // переключение страниц
+  
   const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
+
   const fEditAndSave = () => {
     setEditAndSave(!editAndSave)
   }
@@ -32,12 +36,12 @@ export default function App() {
   }
   
 
-
   return (
     <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
-      {/* <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave}/> */}
-      <Settings />
-      {editAndSave && <TabBar />}
+      {router[0] && <Todo />}
+      {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave}/>}
+      {router[2] && <Settings />}
+      {editAndSave && <TabBar setRouter={setRouter} router={router}/>}
     </View>
   );
 }

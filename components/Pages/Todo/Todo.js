@@ -4,7 +4,7 @@ import { COLORS } from '../../../constants/theme';
 const Settings = () => {
   return ( 
     <View>
-      <Text style={styles.title}>Настройки</Text>
+      <Text style={styles.title}>Задачи</Text>
       <View style={ styles.container }>
         <TouchableOpacity style={ styles.button }>
           <Image style={styles.icons} source={require('../../../assets/icons/square.png')}/>
