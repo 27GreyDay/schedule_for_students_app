@@ -46,14 +46,14 @@ const Settings = () => {
     },
     button: {
       flexDirection: 'row',
-      marginBottom: 20
+      marginBottom: 20,
+      alignItems: 'center',
     },
     settings: {
       fontFamily: 'Ubuntu-Medium',
       fontSize: 16,
       color: COLORS.white,
-      marginLeft: 10,
-      marginTop: 1
+      marginLeft: 10
     }
   }) 
 export default Settings;

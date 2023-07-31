@@ -9,7 +9,7 @@ import DateUp from './Date'
 const Week = props => {
 
   const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);
-  const numWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
+  const numWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
   const [d, setDate] = useState(new Date());
   const [choice, setСhoice] = useState(true);
 
@@ -29,7 +29,7 @@ const Week = props => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const week = d.getDay() - 1;
+  const week = d.getDay();
 
   const fDenominatorOrNumerator = () => {
     const currentDate = new Date();
@@ -109,13 +109,13 @@ const Week = props => {
               ]}
             >
               {getYesterday(week - index - addweek) < 10
-                ? '0' + getYesterday(week - index - addweek - 1)
+                ? '0' + getYesterday(week - index - addweek)
                 : getYesterday(week - index - addweek)}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
-  
+
       <Schedule
         buttonNumber={buttons}
         denominatorOrNumerator={fDenominatorOrNumerator()}

@@ -14,6 +14,8 @@ const Schedule = props => { // Отрисовка карточек с распи
   const clear = () => { // Удаление дня недели
     myData[props.buttonNumber.indexOf(true)].map(item => {
       item.type_pair = "лекция"
+      item.start_time = ""
+      item.end_time = ""
       item.name_pair = ""
       item.auditorium = ""
       item.teacher = ""
@@ -71,8 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingVertical: 10,
     paddingLeft: 14,
     paddingRight: 14,
     flexDirection: 'row',

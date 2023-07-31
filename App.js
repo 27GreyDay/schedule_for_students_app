@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
-      {router[0] && <Todo />}
+      {router[0] && <Todo save={editAndSave} setSave={setEditAndSave}/>}
       {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave}/>}
       {router[2] && <Settings />}
       {editAndSave && <TabBar setRouter={setRouter} router={router}/>}

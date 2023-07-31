@@ -1,28 +1,60 @@
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Image,  ScrollView, SafeAreaView } from 'react-native';
 import { COLORS } from '../../../constants/theme';
+import TodoTitle from './TodoTitle';
+import TodoCard from './TodoCard';
+import TodoEdit from './TodoEdit';
+import tasksData from './../../../constants/tasksData'
 
-const Settings = () => {
+const Todo = props => {
+  const [tasks, setTasks] = useState(tasksData);
+
+  const handleDelete = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    tasksData.splice(index, 1);
+    setTasks(updatedTasks);
+  };
+
+  const handleAdd = () => {
+    const newTask = {
+      date: "20 июля",
+      namePair: "Новое задание",
+      task: "Выполнить новое задание",
+    };
+    setTasks([...tasks, newTask]);
+  };
+
+
   return ( 
-    <View>
-      <Text style={styles.title}>Задачи</Text>
-      <View style={ styles.container }>
-        <TouchableOpacity style={ styles.button }>
-          <Image style={styles.icons} source={require('../../../assets/icons/square.png')}/>
-          <Text style={styles.settings}>Поменять числитель на знаменатель</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={ styles.button }>
-          <Image style={styles.icons} source={require('../../../assets/icons/export.png')}/>
-          <Text style={styles.settings}>Поделиться расписанием</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={ styles.button }>
-          <Image style={styles.icons} source={require('../../../assets/icons/download.png')}/>
-          <Text style={styles.settings}>Загрузить расписание</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={ styles.button }>
-          <Image style={styles.icons} source={require('../../../assets/icons/Info.png')}/>
-          <Text style={styles.settings}>О приложении</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={[ styles.container, {height: props.save ? '91.8%' : '100%'}]}>
+      <TodoTitle save={props.save} setSave={props.setSave}/>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView>
+          {tasks.map((task, index) => (
+            props.save ?
+              (
+                <TodoCard  
+                  key={index} 
+                  date={task.date}
+                  namePair={task.namePair}
+                  task={task.task}
+                  handleDelete={handleDelete}
+                  index={index}
+                />
+              ) : (
+                <TodoEdit
+                  key={index} 
+                  date={task.date}
+                  namePair={task.namePair}
+                  task={task.task}
+                  handleDelete={handleDelete}
+                  index={index}
+                />
+              )
+          ))}
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -37,8 +69,7 @@ const Settings = () => {
       alignSelf: 'center'
     },
     container: {
-      marginHorizontal: 20,
-      height: '79%'
+      marginHorizontal: 20
     },
     icons: {
       width: 24,
@@ -56,4 +87,4 @@ const Settings = () => {
       marginTop: 1
     }
   }) 
-export default Settings;
+export default Todo;

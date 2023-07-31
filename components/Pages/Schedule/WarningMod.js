@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
+    fontFamily: 'Ubuntu-Medium',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,

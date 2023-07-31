@@ -2,13 +2,24 @@ import { StyleSheet, View, Text, TouchableOpacity, Animated, Image } from 'react
 import { COLORS } from '../../../constants/theme';
 import WarningMod from './WarningMod';
 import { useState } from 'react';
+import SaveMod from './SaveMod';
 
 const ScheduleTitle = props => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisibleSave, setModalVisibleSave] = useState(false);
+
+  const handleSave = () => {
+    // Сохранение данных
+    setModalVisibleSave(true); // Показываем модальное окно
+    setTimeout(() => {
+      setModalVisibleSave(false); // Скрываем модальное окно через 2 секунды
+    }, 1000);
+  };
 
   return (
     <View style={styles.container}>
       <WarningMod modalVisible={modalVisible} setModalVisible={setModalVisible} clear={props.clear} fEditAndSave={props.fEditAndSave}/>
+      <SaveMod modalVisible={modalVisibleSave} setModalVisible={setModalVisibleSave}/>
       <View style={{ flexDirection: 'row' }}>
         <Text style={styles.timeCourse}>Время</Text>
         <Text style={styles.timeCourse}>Курс</Text>
@@ -26,7 +37,10 @@ const ScheduleTitle = props => {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => props.setSaveCards(!props.saveCards)}>
+      <TouchableOpacity onPress={() => {
+        props.setSaveCards(!props.saveCards); 
+        handleSave();
+      }}>
         {!props.editAndSave && (
           <Image
             style={ styles.button }
