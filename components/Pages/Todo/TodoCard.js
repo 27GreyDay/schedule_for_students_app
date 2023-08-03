@@ -45,6 +45,7 @@ const TodoCard = props => {
     },
     todoText: {
       fontFamily: 'Ubuntu-Light',
+      color: COLORS.white,
       fontSize: 14,
       lineHeight: 16,
       // paddingLeft: 10,

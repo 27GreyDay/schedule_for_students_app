@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image,  ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image,  ScrollView, SafeAreaView, Button } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 import TodoTitle from './TodoTitle';
 import TodoCard from './TodoCard';
 import TodoEdit from './TodoEdit';
 import tasksData from './../../../constants/tasksData'
+import TodoAdd from "./TodoAdd";
 
 const Todo = props => {
-  const [tasks, setTasks] = useState(tasksData);
-
+  const [saveTodo, setSaveTodo] = useState(false)
+  const [tasks, setTasks] = useState(tasksData)
   const handleDelete = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
@@ -18,22 +19,30 @@ const Todo = props => {
 
   const handleAdd = () => {
     const newTask = {
-      date: "20 июля",
-      namePair: "Новое задание",
-      task: "Выполнить новое задание",
+      date: "",
+      namePair: "",
+      task: "",
     };
     setTasks([...tasks, newTask]);
   };
 
 
+  const onSaveTodo = () => {
+    setSaveTodo(!saveTodo)
+  }
+  
+
+
   return ( 
     <View style={[ styles.container, {height: props.save ? '91.8%' : '100%'}]}>
-      <TodoTitle save={props.save} setSave={props.setSave}/>
+      <TodoTitle save={props.save} setSave={props.setSave} onSaveTodo={onSaveTodo}/>
+      
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView>
           {tasks.map((task, index) => (
             props.save ?
               (
+                task.namePair && task.task &&
                 <TodoCard  
                   key={index} 
                   date={task.date}
@@ -45,14 +54,14 @@ const Todo = props => {
               ) : (
                 <TodoEdit
                   key={index} 
-                  date={task.date}
-                  namePair={task.namePair}
-                  task={task.task}
+                  task={task}
                   handleDelete={handleDelete}
                   index={index}
+                  saveTodo={saveTodo}
                 />
               )
           ))}
+          {!props.save && <TodoAdd handleAdd={handleAdd}/>}
         </ScrollView>
       </SafeAreaView>
     </View>

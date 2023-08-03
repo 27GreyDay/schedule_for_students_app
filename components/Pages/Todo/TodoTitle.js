@@ -4,11 +4,26 @@ import { COLORS } from '../../../constants/theme';
 const TodoTitle = props => {
   return ( 
     <View style={styles.title}>
-      <View style={{width: 24, height: 24, backgroundColor: 'black'}}/>
+      <View style={{ width: props.save ? 48 : 96 }}/>
       <Text style={styles.titleText}>Задачи</Text>
-      <TouchableOpacity onPress={() => props.setSave(!props.save)}>
-      {props.save ? <Image style={styles.icons} source={require('../../../assets/icons/edit.png')}/> : <Image style={styles.icons} source={require('../../../assets/icons/save.png')}/>}
-      </TouchableOpacity>
+
+      <View style={{ flexDirection: 'row',}}> 
+        {
+        !props.save &&
+          <TouchableOpacity onPress={props.onSaveTodo}>
+            <Image style={styles.icons} source={require('../../../assets/icons/save.png')}/>
+          </TouchableOpacity>
+        }
+
+        <TouchableOpacity onPress={() => props.setSave(!props.save)}>
+        {props.save ? 
+        (
+        <Image style={styles.icons} source={require('../../../assets/icons/edit.png')}/>
+        ) : (
+        <Image style={styles.icons} source={require('../../../assets/icons/close.png')}/>
+        )}
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -29,6 +44,7 @@ const TodoTitle = props => {
     icons: {
       width: 24,
       height: 24,
+      marginLeft: 24
     }
   }) 
 export default TodoTitle;

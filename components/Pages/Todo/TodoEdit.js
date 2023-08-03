@@ -1,28 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { COLORS } from '../../../constants/theme';
+import CalendarMod from './CalendarMod';
 
 const TodoCard = props => {
-  const [date, setDate] = useState(props.date)
-  const [namePairEdit, setNamePairEdit] = useState(props.namePair)
-  const [todo, setTodo] = useState(props.task)
+  const [namePairEdit, setNamePairEdit] = useState(props.task.namePair)
+  const [todo, setTodo] = useState(props.task.task)
+  const [date, setDate] = useState(props.task.date)
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const onSave = () => {
+    props.task.namePair = namePairEdit
+    props.task.task = todo
+    props.task.date = date
+  }
+
+  useEffect(() => {
+    onSave()
+  }, [props.saveTodo]);
+
+  const onCalendarMod = () => {
+    setModalVisible(!modalVisible)
+  }
 
   return ( 
+    <>
+    <CalendarMod modalVisible={modalVisible} onCalendarMod={onCalendarMod} setDate={setDate}/>
     <View style={ styles.cardTodo }>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between',}}>
 
         <View style={{ flexDirection: 'row', alignItems: 'center'}}>
 
           <Image style={styles.icons} source={require('../../../assets/icons/time.png')}/>
-          <TextInput 
-            style={ styles.dateText } 
-            value={date} 
-            onChangeText={text => setDate(text)} 
-            placeholder='Срок выполнения' 
-            placeholderTextColor={COLORS.white3}
-            maxLength={20}
-          />
-          
+          <TouchableOpacity onPress={onCalendarMod}>
+            <Text style={ styles.dateText }>{ date ? date : 'Выбрать дату' }</Text>
+          </TouchableOpacity>
+
         </View>
 
         <TouchableOpacity onPress={() => props.handleDelete(props.index)}>
@@ -49,10 +62,10 @@ const TodoCard = props => {
         placeholderTextColor={COLORS.white3}
         multiline
         numberOfLines={2}
-        maxLength={100}
       />
 
     </View>
+    </>
   );
 }
   const styles = StyleSheet.create({
@@ -79,6 +92,7 @@ const TodoCard = props => {
       fontFamily: 'Ubuntu-Light',
       fontSize: 14,
       lineHeight: 16,
+      color: COLORS.white
       // paddingLeft: 10,
     },
     icons: {
