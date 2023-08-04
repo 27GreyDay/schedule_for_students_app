@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Animated, Image } from 'react
 import { COLORS } from '../../../constants/theme';
 import WarningMod from './WarningMod';
 import { useState } from 'react';
-import SaveMod from './SaveMod';
+import SaveMod from '../../../constants/SaveMod';
 
 const ScheduleTitle = props => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -17,9 +17,11 @@ const ScheduleTitle = props => {
   };
 
   return (
+    <>
+    <SaveMod modalVisible={modalVisibleSave} setModalVisible={setModalVisibleSave}/>
+    <WarningMod modalVisible={modalVisible} setModalVisible={setModalVisible} clear={props.clear} fEditAndSave={props.fEditAndSave}/>
+    
     <View style={styles.container}>
-      <WarningMod modalVisible={modalVisible} setModalVisible={setModalVisible} clear={props.clear} fEditAndSave={props.fEditAndSave}/>
-      <SaveMod modalVisible={modalVisibleSave} setModalVisible={setModalVisibleSave}/>
       <View style={{ flexDirection: 'row' }}>
         <Text style={styles.timeCourse}>Время</Text>
         <Text style={styles.timeCourse}>Курс</Text>
@@ -63,6 +65,7 @@ const ScheduleTitle = props => {
         )}
       </TouchableOpacity>
     </View>
+    </>
   );
 }
 

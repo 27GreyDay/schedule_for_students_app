@@ -74,6 +74,7 @@ const TodoCard = props => {
       borderRadius: 16, 
       paddingVertical: 15, 
       paddingHorizontal: 20,
+      marginHorizontal: 20,
       marginBottom: 15,
     },
     dateText: {

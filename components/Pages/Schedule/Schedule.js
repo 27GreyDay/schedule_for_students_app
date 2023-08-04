@@ -54,7 +54,7 @@ const Schedule = props => { // Отрисовка карточек с распи
                 );
               } else if ((item.id - 1) % 6 === 0 && !(item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher)) {
                 return (
-                  <Image style={{ marginTop: 50, width: '100%', height: 280 }} source={require('../../../assets/catslip.jpg')} key={item.id} />
+                  <Image style={{ marginVertical: '25%', width: '100%', height: 280 }} source={require('../../../assets/catslip.jpg')} key={item.id} />
                 );
               }
             } else {
@@ -74,8 +74,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingVertical: 10,
-    paddingLeft: 14,
-    paddingRight: 14,
+    paddingHorizontal: 14,
     flexDirection: 'row',
   },
   textDown: {

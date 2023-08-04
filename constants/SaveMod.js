@@ -1,5 +1,5 @@
 import { View, Text, Modal, StyleSheet } from 'react-native';
-import { COLORS } from '../../../constants/theme';
+import { COLORS } from './theme';
 
 const SaveMod = props => {
   return (

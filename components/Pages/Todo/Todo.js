@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image,  ScrollView, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, View, Image,  ScrollView, SafeAreaView, } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 import TodoTitle from './TodoTitle';
 import TodoCard from './TodoCard';
@@ -10,6 +10,7 @@ import TodoAdd from "./TodoAdd";
 const Todo = props => {
   const [saveTodo, setSaveTodo] = useState(false)
   const [tasks, setTasks] = useState(tasksData)
+
   const handleDelete = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
@@ -24,6 +25,7 @@ const Todo = props => {
       task: "",
     };
     setTasks([...tasks, newTask]);
+    tasksData.push(newTask)
   };
 
 
@@ -34,38 +36,41 @@ const Todo = props => {
 
 
   return ( 
-    <View style={[ styles.container, {height: props.save ? '91.8%' : '100%'}]}>
+    <View style={{height: props.save ? '91.8%' : '100%'}}>
       <TodoTitle save={props.save} setSave={props.setSave} onSaveTodo={onSaveTodo}/>
       
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView>
-          {tasks.map((task, index) => (
-            props.save ?
-              (
-                task.namePair && task.task &&
-                <TodoCard  
-                  key={index} 
-                  date={task.date}
-                  namePair={task.namePair}
-                  task={task.task}
-                  handleDelete={handleDelete}
-                  index={index}
-                />
-              ) : (
-                <TodoEdit
-                  key={index} 
-                  task={task}
-                  handleDelete={handleDelete}
-                  index={index}
-                  saveTodo={saveTodo}
-                />
-              )
-          ))}
+          {tasks.length > 0 ? (
+            tasks.map((task, index) => (
+              props.save ?
+                (
+                  task.namePair && task.task && task.date &&
+                  <TodoCard  
+                    key={index}
+                    task={task}
+                    handleDelete={handleDelete}
+                    index={index}
+                  />
+                ) : (
+                  <TodoEdit
+                    key={index} 
+                    task={task}
+                    handleDelete={handleDelete}
+                    index={index}
+                    saveTodo={saveTodo}
+                  />
+                )
+            ))
+          ) : (
+            <Image style={{ width: '100%', height: 260, marginVertical: '50%' }} source={require('../../../assets/catslip.jpg')}/>
+          )}
           {!props.save && <TodoAdd handleAdd={handleAdd}/>}
         </ScrollView>
       </SafeAreaView>
     </View>
   );
+  
 }
   const styles = StyleSheet.create({
     title: {
@@ -76,9 +81,6 @@ const Todo = props => {
       fontSize: 16,
       color: COLORS.white2,
       alignSelf: 'center'
-    },
-    container: {
-      marginHorizontal: 20
     },
     icons: {
       width: 24,
