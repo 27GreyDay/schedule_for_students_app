@@ -4,8 +4,6 @@ import { COLORS } from '../../../constants/theme';
 import Schedule from './Schedule';
 import DateUp from './Date'
 
-
-
 const Week = props => {
 
   const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);

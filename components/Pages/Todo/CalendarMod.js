@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '../../../constants/theme';
+import GenerateCalendar from './GenerateCalendar';
 
 const weeks = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
 const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-const monthsR = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
 const CalendarMod = props => {
 
   const today = new Date()
@@ -29,47 +29,6 @@ const CalendarMod = props => {
       setMonth(month + 11)
   }
   }
-
-  const generateCalendar = (year, month, day) => {
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const todayMonth = new Date().getMonth()
-    const endDay = 7 - (firstDay + daysInMonth) % 7
-    const calendar = [];
-  
-    for (let i = 0; i < firstDay; i++) {
-      calendar.push(<Text style={ styles.empty } key={`empty-${i}`} />);
-    }
-  
-    for (let i = 1; i <= daysInMonth; i++) {
-      calendar.push(
-        <TouchableOpacity onPress={() => {
-          props.setDate('До ' + i + ' ' + monthsR[month])
-          props.onCalendarMod()
-        }} key={`day-${i}`}>
-          <Text style={[ styles.textDay, day === i && todayMonth === month && styles.textDayActive ]}>
-            {i}
-          </Text>
-        </TouchableOpacity>
-      )
-    }
-  
-    for (let i = 0; i < endDay && endDay !== 7; i++) {
-      calendar.push(<Text style={ styles.empty } key={`empty-${32 + i}`} />);
-    }
-  
-    const wrappedCalendar = [];
-    for (let i = 0; i < calendar.length; i += 7) {
-      const week = calendar.slice(i, i + 7);
-      wrappedCalendar.push(
-        <View key={`week-${i}`} style={ styles.conDay }>
-          {week}
-        </View>
-      );
-    }
-  
-    return wrappedCalendar;
-  };
 
   return (
     <Modal
@@ -102,7 +61,7 @@ const CalendarMod = props => {
               ))}
             </View>
 
-              {generateCalendar(year, month, day)}
+              <GenerateCalendar year={year} month={month} day={day} onCalendarMod={props.onCalendarMod} setDate={props.setDate}/>
               
           </View>
         </View>
@@ -154,28 +113,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu-Medium',
     fontSize: 10,
     color: COLORS.white
-  },
-  conDay: {
-    flexDirection: 'row', 
-    width: 260, 
-    justifyContent: 'space-between', 
-  },
-  textDay: {
-    fontFamily: 'Ubuntu-Medium',
-    fontSize: 14,
-    color: COLORS.white,
-    width: 28,
-    textAlign: 'center',
-    backgroundColor: COLORS.black2,
-    paddingVertical: 6,
-    borderRadius: 50,
-    marginTop: 10
-  },
-  textDayActive: {
-    backgroundColor: COLORS.purple,
-  },
-  empty: {
-    width: 28,
   },
   line: {
     width: 250, 

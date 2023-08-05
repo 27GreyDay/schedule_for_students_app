@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput } from 'reac
 import { COLORS } from '../../../constants/theme';
 import CalendarMod from './CalendarMod';
 
-const TodoCard = props => {
+const TodoEdit = props => {
   const [namePairEdit, setNamePairEdit] = useState(props.task.namePair)
   const [todo, setTodo] = useState(props.task.task)
   const [date, setDate] = useState(props.task.date)
@@ -101,4 +101,4 @@ const TodoCard = props => {
       height: 24,
     }
   }) 
-export default TodoCard;
+export default TodoEdit;

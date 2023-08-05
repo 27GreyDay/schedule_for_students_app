@@ -36,7 +36,7 @@ const Todo = props => {
 
 
   return ( 
-    <View style={{height: props.save ? '91.8%' : '100%'}}>
+    <View style={{ flex: 1 }}>
       <TodoTitle save={props.save} setSave={props.setSave} onSaveTodo={onSaveTodo}/>
       
       <SafeAreaView style={{ flex: 1 }}>
@@ -63,7 +63,7 @@ const Todo = props => {
                 )
             ))
           ) : (
-            <Image style={{ width: '100%', height: 260, marginVertical: '50%' }} source={require('../../../assets/catslip.jpg')}/>
+            <Image style={{ width: '100%', height: 280, marginTop: 20 }} source={require('../../../assets/catslip.jpg')}/>
           )}
           {!props.save && <TodoAdd handleAdd={handleAdd}/>}
         </ScrollView>

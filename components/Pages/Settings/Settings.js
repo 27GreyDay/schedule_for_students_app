@@ -1,9 +1,10 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '../../../constants/theme';
+import Donation from './Donation';
 
 const Settings = () => {
   return ( 
-    <View>
+    <View style={{ flex: 1 }}>
       <Text style={styles.title}>Настройки</Text>
       <View style={ styles.container }>
         <TouchableOpacity style={ styles.button }>
@@ -23,6 +24,7 @@ const Settings = () => {
           <Text style={styles.settings}>О приложении</Text>
         </TouchableOpacity>
       </View>
+      <Donation />
     </View>
   );
 }
@@ -38,7 +40,6 @@ const Settings = () => {
     },
     container: {
       marginHorizontal: 20,
-      height: '79%'
     },
     icons: {
       width: 24,

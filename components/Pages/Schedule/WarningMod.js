@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    fontFamily: 'Ubuntu-Medium',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
@@ -83,7 +82,9 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
+    fontFamily: 'Ubuntu-Medium',
     textAlign: 'center',
+    color: COLORS.white
   },
 });
 
