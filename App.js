@@ -14,6 +14,7 @@ export default function App() {
   const [router, setRouter] = useState([false, true, false]) // переключение страниц
   
   const [editAndSave, setEditAndSave] = useState(true); // Для кнопки "Редактирование/Сохранение"
+  const [numerToDenom, setNumerToDenom] =useState(true); // Для настроек числителя и знаменателя
 
   const fEditAndSave = () => {
     setEditAndSave(!editAndSave)
@@ -39,8 +40,8 @@ export default function App() {
   return (
     <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
       {router[0] && <Todo save={editAndSave} setSave={setEditAndSave}/>}
-      {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave}/>}
-      {router[2] && <Settings />}
+      {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave} numerToDenom={numerToDenom}/>}
+      {router[2] && <Settings numerToDenom={numerToDenom} setNumerToDenom={setNumerToDenom}/>}
       {editAndSave && <TabBar setRouter={setRouter} router={router}/>}
     </View>
   );

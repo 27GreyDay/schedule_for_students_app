@@ -9,7 +9,7 @@ const Week = props => {
   const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);
   const numWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
   const [d, setDate] = useState(new Date());
-  const [choice, setСhoice] = useState(true);
+  const [choice, setСhoice] = useState(props.numerToDenom);
 
   const getYesterday = (daysToSubtract) => {
     const today = new Date();
