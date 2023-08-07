@@ -7,6 +7,6 @@
     <img src="https://drive.google.com/uc?export=view&id=1j2tGBmAwZBmxboHwnuRZOKF4Tnt65gCK" width="300">
   </p>
 </div>
-# Идея
+## Идея
 <p>Сделать удобное и универсальное расписание для студентов</p>
 
