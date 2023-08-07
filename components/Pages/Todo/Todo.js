@@ -1,38 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Image,  ScrollView, SafeAreaView, } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 import TodoTitle from './TodoTitle';
 import TodoCard from './TodoCard';
 import TodoEdit from './TodoEdit';
-import tasksData from './../../../constants/tasksData'
 import TodoAdd from "./TodoAdd";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Todo = props => {
   const [saveTodo, setSaveTodo] = useState(false)
-  const [tasks, setTasks] = useState(tasksData)
+  const [tasks, setTasks] = useState([])
 
-  const handleDelete = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    tasksData.splice(index, 1);
-    setTasks(updatedTasks);
+  const saveData = async (data) => {
+    try {
+      await AsyncStorage.setItem('tasksData', JSON.stringify(data));
+    } catch (error) {
+      console.log('Ошибка при сохранении данных:', error);
+    }
   };
 
-  const handleAdd = () => {
+  const loadTasksData = async () => {
+    try {
+      const data = await AsyncStorage.getItem('tasksData');
+      if (data !== null) {
+        return JSON.parse(data);
+      }
+    } catch (error) {
+      console.log('Ошибка при загрузке данных:', error);
+    }
+    return []; // Возвращаем пустой массив, если данных нет
+  };
+  
+  
+
+  const handleDelete = (index) => { // Удаление задания
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+    saveData(updatedTasks);
+  };
+
+  const handleAdd = () => { // Добавление пустой карточки
     const newTask = {
       date: "",
       namePair: "",
       task: "",
     };
     setTasks([...tasks, newTask]);
-    tasksData.push(newTask)
   };
 
 
-  const onSaveTodo = () => {
-    setSaveTodo(!saveTodo)
-  }
-  
+  const onSaveTodo = () => { // Сохранение заданий 
+    saveData(tasks);
+    setSaveTodo(!saveTodo);
+  };
+
+  useEffect(() => {
+    loadTasksData().then((data) => { // Достаем задания из памяти телефона
+      setTasks(data);
+    })
+  }, [saveTodo]);
+
 
 
   return ( 
@@ -59,6 +88,8 @@ const Todo = props => {
                     handleDelete={handleDelete}
                     index={index}
                     saveTodo={saveTodo}
+                    saveData={saveData}
+                    tasks={tasks}
                   />
                 )
             ))

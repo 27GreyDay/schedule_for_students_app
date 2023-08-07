@@ -13,7 +13,10 @@ const TodoEdit = props => {
     props.task.namePair = namePairEdit
     props.task.task = todo
     props.task.date = date
+    props.saveData(props.tasks)
   }
+
+  
 
   useEffect(() => {
     onSave()

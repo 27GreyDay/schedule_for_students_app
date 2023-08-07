@@ -87,6 +87,7 @@ const CardScheduleEdit = props => {
     props.elem.start_time = timeStart;
     props.elem.end_time = timeEnd;
     props.elem.type_week = typeWeek
+    props.saveData(props.schedule)
   };
 
   useEffect(() => {

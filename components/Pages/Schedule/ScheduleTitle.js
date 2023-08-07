@@ -19,7 +19,12 @@ const ScheduleTitle = props => {
   return (
     <>
     <SaveMod modalVisible={modalVisibleSave} setModalVisible={setModalVisibleSave}/>
-    <WarningMod modalVisible={modalVisible} setModalVisible={setModalVisible} clear={props.clear} fEditAndSave={props.fEditAndSave}/>
+    <WarningMod 
+      modalVisible={modalVisible} 
+      setModalVisible={setModalVisible} 
+      clear={props.clear} 
+      fEditAndSave={props.fEditAndSave}
+    />
     
     <View style={styles.container}>
       <View style={{ flexDirection: 'row' }}>
@@ -40,7 +45,7 @@ const ScheduleTitle = props => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => {
-        props.setSaveCards(!props.saveCards); 
+        props.onSaveCards();
         handleSave();
       }}>
         {!props.editAndSave && (

@@ -4,6 +4,7 @@ import { COLORS } from '../../../constants/theme';
 import myData from '../../../constants/data';
 import CardScheduleEdit from './CardScheduleEdit';
 import ScheduleTitle from './ScheduleTitle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Schedule = props => { // Отрисовка карточек с расписание
@@ -11,24 +12,61 @@ const Schedule = props => { // Отрисовка карточек с распи
   
   const [saveCards, setSaveCards] = useState(false);
 
-  const clear = () => { // Удаление дня недели
-    myData[props.buttonNumber.indexOf(true)].map(item => {
-      item.type_pair = "лекция"
-      item.start_time = ""
-      item.end_time = ""
-      item.name_pair = ""
-      item.auditorium = ""
-      item.teacher = ""
-      item.type_week = "числ/знам"
+  const [schedule, setSchedule] = useState(myData);
+
+  const saveData = async (data) => {
+    try {
+      await AsyncStorage.setItem('myData', JSON.stringify(data));
+    } catch (error) {
+      console.log('Ошибка при сохранении данных:', error);
+    }
+  };
+
+  const loadTasksData = async () => {
+    try {
+      const data = await AsyncStorage.getItem('myData');
+      if (data !== null) {
+        return JSON.parse(data);
+      }
+    } catch (error) {
+      console.log('Ошибка при загрузке данных:', error);
+    }
+    return []; // Возвращаем пустой массив, если данных нет
+  };
+  
+  useEffect(() => {
+    loadTasksData().then((data) => {
+      setSchedule(data);
     })
+  }, [saveCards]);
+
+  const clear = () => { // Удаление дня недели
+    schedule[props.buttonNumber.indexOf(true)].map(item => {
+      item.type_pair = "лекция";
+      item.start_time = "";
+      item.end_time = "";
+      item.name_pair = "";
+      item.auditorium = "";
+      item.teacher = "";
+      item.type_week = "числ/знам";
+    })
+  }
+
+  const onSaveCards = () => {
+    saveData(schedule);
+    setSaveCards(!saveCards);
   }
 
   return (
     <>
-      <ScheduleTitle fEditAndSave={props.fEditAndSave} editAndSave={props.editAndSave} saveCards={saveCards} setSaveCards={setSaveCards}  clear={clear}/>
+      <ScheduleTitle 
+        fEditAndSave={props.fEditAndSave} 
+        editAndSave={props.editAndSave} 
+        onSaveCards={onSaveCards}  
+        clear={clear}/>
       <SafeAreaView style={styles.containerV}>
         <ScrollView>
-          {myData[props.buttonNumber.indexOf(true)].map(item => {
+          {schedule[props.buttonNumber.indexOf(true)].map(item => {
             if (props.editAndSave) {
               if (item.end_time && item.start_time && item.name_pair && item.auditorium && item.teacher && item.type_week !== denOrNum) {
                 return (
@@ -59,7 +97,13 @@ const Schedule = props => { // Отрисовка карточек с распи
               }
             } else {
                 return (
-                  <CardScheduleEdit elem={item} key={item.id} saveCards={saveCards} setSaveCards={setSaveCards}/>
+                  <CardScheduleEdit 
+                    elem={item} 
+                    key={item.id} 
+                    saveCards={saveCards}
+                    saveData={saveData}
+                    schedule={schedule}
+                  />
               );
             }
           })}

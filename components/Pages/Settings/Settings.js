@@ -12,7 +12,7 @@ const Settings = props => {
     <View style={{ flex: 1 }}>
       <Text style={styles.title}>Настройки</Text>
       <View style={ styles.container }>
-        <TouchableOpacity style={ styles.button } onPress={() => props.setNumerToDenom(!props.numerToDenom)}>
+        <TouchableOpacity style={ styles.button } onPress={() => props.onNumerToDenom()}>
           { props.numerToDenom ? 
             <Image style={styles.icons} source={require('../../../assets/icons/square.png')}/> 
             :

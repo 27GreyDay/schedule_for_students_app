@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "schedule2",
-    "slug": "schedule2",
+    "name": "Uni Schedule",
+    "slug": "schedule",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.greyday.schedule2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a3755659-9fd5-4545-af2b-7b8794c10d0b"
+      }
     }
   }
 }
