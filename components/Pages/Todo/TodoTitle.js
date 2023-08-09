@@ -48,7 +48,7 @@ const TodoTitle = props => {
   const styles = StyleSheet.create({
     title: {
       marginHorizontal: 20,
-      marginTop: 60,
+      marginTop: 40,
       marginBottom: 30,
       flexDirection: 'row',
       justifyContent: 'space-between',

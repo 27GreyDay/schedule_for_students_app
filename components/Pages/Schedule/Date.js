@@ -28,7 +28,7 @@ const DateUp = props => { // Компонент с датой, верхний
 }  
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 30,
     paddingBottom: 40,
     paddingLeft: 14,
     paddingRight: 14,

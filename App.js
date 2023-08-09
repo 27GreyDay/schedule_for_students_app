@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { COLORS } from './constants/theme';
@@ -8,6 +9,7 @@ import TabBar from './components/Router/TabBar'
 import Settings from './components/Pages/Settings/Settings';
 import Todo from './components/Pages/Todo/Todo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -61,11 +63,13 @@ export default function App() {
   
 
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
-      {router[0] && <Todo save={editAndSave} setSave={setEditAndSave}/>}
-      {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave} numerToDenom={numerToDenom}/>}
-      {router[2] && <Settings numerToDenom={numerToDenom} onNumerToDenom={onNumerToDenom}/>}
-      {editAndSave && <TabBar setRouter={setRouter} router={router}/>}
-    </View>
+    <SafeAreaProvider>
+      <View style={{flex: 1, backgroundColor: COLORS.black}} onLayout={onLayoutRootView}>
+        {router[0] && <Todo save={editAndSave} setSave={setEditAndSave}/>}
+        {router[1] && <Week fEditAndSave={fEditAndSave} editAndSave={editAndSave} numerToDenom={numerToDenom}/>}
+        {router[2] && <Settings numerToDenom={numerToDenom} onNumerToDenom={onNumerToDenom}/>}
+        {editAndSave && <TabBar setRouter={setRouter} router={router}/>}
+      </View>
+    </SafeAreaProvider>
   );
 }

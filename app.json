@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Uni Schedule",
-    "slug": "schedule",
+    "slug": "uni-schedule",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#400072"
       },
       "package": "com.greyday.schedule2"
     },
@@ -29,8 +29,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "a3755659-9fd5-4545-af2b-7b8794c10d0b"
+        "projectId": "710b1cbd-8d04-4f7c-9f5f-b35486e60bcc"
       }
-    }
+    },
+    "owner": "greyday"
   }
 }

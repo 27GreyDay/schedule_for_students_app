@@ -32,7 +32,7 @@ const Settings = props => {
 }
   const styles = StyleSheet.create({
     title: {
-      marginTop: 60,
+      marginTop: 40,
       marginBottom: 30,
       fontFamily: 'Ubuntu-Bold',
       textTransform: 'uppercase',

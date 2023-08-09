@@ -23,7 +23,7 @@ const Schedule = props => { // Отрисовка карточек с распи
     if (data !== null) {
       return JSON.parse(data);
     }
-    return []; // Возвращаем пустой массив, если данных нет
+    return myData; // Возвращаем пустой массив, если данных нет
   };
   
   useEffect(() => {
