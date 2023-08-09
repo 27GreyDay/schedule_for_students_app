@@ -7,9 +7,10 @@ import DateUp from './Date'
 const Week = props => {
 
   const [buttons, setButtons] = useState([true, false, false, false, false, false, false]);
-  const numWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
+  const numWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+  const denOrNum = [props.numerToDenom ? 'Числитель' : 'Знаменатель', props.numerToDenom ? 'Знаменатель' : 'Числитель'];
   const [d, setDate] = useState(new Date());
-  const [choice, setСhoice] = useState(props.numerToDenom);
+  const [choice, setСhoice] = useState(true);
 
   const getYesterday = (daysToSubtract) => {
     const today = new Date();
@@ -79,6 +80,7 @@ const Week = props => {
         denominatorOrNumerator={fDenominatorOrNumerator()}
         clickDenominatorOrNumerator={onDenominatorOrNumerator}
         dn={choice}
+        denOrNum={denOrNum}
       />
       <View style={styles.container}>
         {buttons.map((color, index) => (
@@ -120,6 +122,7 @@ const Week = props => {
         dn={choice}
         fEditAndSave={props.fEditAndSave}
         editAndSave={props.editAndSave}
+        denOrNum={denOrNum}
       />
     </>
   );

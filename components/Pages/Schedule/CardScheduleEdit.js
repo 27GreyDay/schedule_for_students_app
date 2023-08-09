@@ -18,10 +18,10 @@ const CardScheduleEdit = props => {
     let newTypeWeek = '';
     switch (typeWeekCount) {
       case 0:
-        newTypeWeek = 'знаменатель';
+        newTypeWeek = props.denOrNum[1]; // Числитель по умол
         break;
       case 1:
-        newTypeWeek = 'числитель';
+        newTypeWeek = props.denOrNum[0]; // Знаменатель оп умол
         break;
       default:
         setTypeWeekCount(prev => prev - 3);
@@ -65,7 +65,7 @@ const CardScheduleEdit = props => {
   const timeStartChange = (input) => {
     const formattedText = formatTime(input);
     if (formattedText.length === 5) {
-      setTimeEnd(addMinutes(formattedText, 90))
+      setTimeEnd(addMinutes(formattedText, 90));
       setTimeStart(formattedText);
     } else
       setTimeStart(formattedText);
@@ -78,20 +78,19 @@ const CardScheduleEdit = props => {
   }; 
   
 
-  const onSave = () => {
-    // Обновление значений в myData
+  const onSave = () => { // Обновление значений в myData
     props.elem.teacher = teacherEdit;
     props.elem.auditorium = auditoriumEdit;
     props.elem.name_pair = namePairEdit;
     props.elem.type_pair = typePairEdit;
     props.elem.start_time = timeStart;
     props.elem.end_time = timeEnd;
-    props.elem.type_week = typeWeek
+    props.elem.type_week = typeWeek;
     props.saveData(props.schedule)
   };
 
   useEffect(() => {
-    onSave();
+    onSave()
   }, [props.saveCards]);
 
 
@@ -100,9 +99,24 @@ const CardScheduleEdit = props => {
     <View style={styles.container} >
       <View style={{ alignItems: 'flex-end', width: 44 }}>
 
-        <TextInput style={{ fontFamily: 'Ubuntu-Medium', fontSize: 16, color: COLORS.white, paddingBottom: 14, width: 41 }} placeholder='00:00' placeholderTextColor={COLORS.white2} keyboardType="numeric" value={timeStart} onChangeText={timeStartChange} maxLength={5}/>
+        <TextInput 
+          style={ styles.startTimeStyle } 
+          placeholder='00:00' 
+          placeholderTextColor={COLORS.white2} 
+          keyboardType="numeric" 
+          value={timeStart} 
+          onChangeText={timeStartChange} 
+          maxLength={5}
+        />
 
-        <TextInput style={{ fontFamily: 'Ubuntu-Medium', fontSize: 14, color: COLORS.white2, width: 36 }} placeholder='00:00' placeholderTextColor={COLORS.white2}  keyboardType="numeric" value={timeEnd} onChangeText={timeEndChange} maxLength={5} />
+        <TextInput 
+          style={ styles.endTimeStyle } 
+          placeholder='00:00' 
+          placeholderTextColor={COLORS.white2}  
+          keyboardType="numeric" 
+          value={timeEnd} 
+          onChangeText={timeEndChange} 
+          maxLength={5} />
 
       </View>
       <View style={styles.line}></View>
@@ -119,18 +133,41 @@ const CardScheduleEdit = props => {
 
         </View>
 
-        <TextInput style={styles.course} value={namePairEdit} onChangeText={text => setNamePairEdit(text)} placeholder='Название предмета' placeholderTextColor={COLORS.white3} multiline numberOfLines={2} maxLength={50}/>
+        <TextInput 
+          style={styles.course} 
+          value={namePairEdit} 
+          onChangeText={text => setNamePairEdit(text)} 
+          placeholder='Название предмета' 
+          placeholderTextColor={COLORS.white3} 
+          multiline 
+          numberOfLines={2} 
+          maxLength={50}
+        />
 
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
           <Image style={{ width: 16, height: 18 }} source={require('../../../assets/icons/where.png')} />
-          <TextInput style={styles.textDown} value={auditoriumEdit} onChangeText={text => setAuditoriumEdit(text)} placeholder='Номер аудитории' placeholderTextColor={COLORS.white3}  maxLength={20}/>
+          <TextInput 
+            style={styles.textDown} 
+            value={auditoriumEdit} 
+            onChangeText={text => setAuditoriumEdit(text)} 
+            placeholder='Номер аудитории' 
+            placeholderTextColor={COLORS.white3}  
+            maxLength={20}
+          />
           
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5 }}>
 
           <Image style={{ width: 18, height: 18 }} source={require('../../../assets/icons/name.png')} />
-          <TextInput style={styles.textDown} value={teacherEdit} onChangeText={text => setTeacherEdit(text)} placeholder='ФИО преподавателя' placeholderTextColor={COLORS.white3} maxLength={20}/>
+          <TextInput 
+            style={styles.textDown} 
+            value={teacherEdit} 
+            onChangeText={text => setTeacherEdit(text)} 
+            placeholder='ФИО преподавателя' 
+            placeholderTextColor={COLORS.white3} 
+            maxLength={20}
+          />
 
         </View>
       </View>
@@ -144,6 +181,19 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     paddingRight: 14,
     flexDirection: 'row',
+  },
+  startTimeStyle: {
+    fontFamily: 'Ubuntu-Medium', 
+    fontSize: 16, 
+    color: COLORS.white, 
+    paddingBottom: 14, 
+    width: 41
+  },
+  endTimeStyle: {
+    fontFamily: 'Ubuntu-Medium', 
+    fontSize: 14, 
+    color: COLORS.white2, 
+    width: 36
   },
   textDown: {
     fontFamily: 'Ubuntu-Regular',

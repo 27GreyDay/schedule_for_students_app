@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 
-const week = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
-const month = ['Янв', 'Фев', 'Мар', 'Апр', 'Мая', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
+const week = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+const month = ['Янв', 'Фев', 'Мар', 'Апр', 'Мая', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
 
 const DateUp = props => { // Компонент с датой, верхний
   return ( 
@@ -16,7 +16,12 @@ const DateUp = props => { // Компонент с датой, верхний
         </View>
       </View>
       <TouchableOpacity onPress={props.clickDenominatorOrNumerator} style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>{props.dn ? (!props.denominatorOrNumerator ? 'Знаменатель' : 'Числитель') : (props.denominatorOrNumerator ? 'Знаменатель' : 'Числитель')}</Text>
+        <Text style={styles.buttonText}>{
+          props.dn ? (
+            !props.denominatorOrNumerator ? props.denOrNum[1] : props.denOrNum[0]
+            ) : (
+            props.denominatorOrNumerator ? props.denOrNum[1] : props.denOrNum[0]
+          )}</Text>
       </TouchableOpacity>
     </View>
   );

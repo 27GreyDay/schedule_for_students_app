@@ -4,9 +4,9 @@ import { COLORS } from '../../../constants/theme';
 import CalendarMod from './CalendarMod';
 
 const TodoEdit = props => {
-  const [namePairEdit, setNamePairEdit] = useState(props.task.namePair)
-  const [todo, setTodo] = useState(props.task.task)
-  const [date, setDate] = useState(props.task.date)
+  const [namePairEdit, setNamePairEdit] = useState(props.task.namePair);
+  const [todo, setTodo] = useState(props.task.task);
+  const [date, setDate] = useState(props.task.date);
   const [modalVisible, setModalVisible] = useState(false);
 
   const onSave = () => {
@@ -14,7 +14,7 @@ const TodoEdit = props => {
     props.task.task = todo
     props.task.date = date
     props.saveData(props.tasks)
-  }
+  };
 
   
 
@@ -24,7 +24,7 @@ const TodoEdit = props => {
 
   const onCalendarMod = () => {
     setModalVisible(!modalVisible)
-  }
+  };
 
   return ( 
     <>

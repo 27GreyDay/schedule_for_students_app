@@ -6,7 +6,7 @@ import { COLORS } from './constants/theme';
 import Week from './components/Pages/Schedule/Week';
 import TabBar from './components/Router/TabBar'
 import Settings from './components/Pages/Settings/Settings';
-import Todo from './components/Pages/Todo/Todo'
+import Todo from './components/Pages/Todo/Todo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 SplashScreen.preventAutoHideAsync();
@@ -17,22 +17,13 @@ export default function App() {
   const [numerToDenom, setNumerToDenom] = useState(true); // Для настроек числителя и знаменателя
 
   const saveState = async (value) => {
-    try {
-      await AsyncStorage.setItem('elementState', value.toString());
-      console.log('Состояние элемента успешно сохранено.');
-    } catch (error) {
-      console.log('Ошибка при сохранении состояния элемента:', error);
-    }
+    await AsyncStorage.setItem('elementState', value.toString());
   };
 
   const retrieveState = async () => {
-    try {
-      const value = await AsyncStorage.getItem('elementState');
-      if (value !== null) {
-        return JSON.parse(value);
-      }
-    } catch (error) {
-      console.log('Ошибка при получении состояния элемента:', error);
+    const value = await AsyncStorage.getItem('elementState');
+    if (value !== null) {
+      return JSON.parse(value);
     }
   };
   
@@ -45,7 +36,7 @@ export default function App() {
   const onNumerToDenom = () => {
     setNumerToDenom(!numerToDenom)
     saveState(!numerToDenom)
-  }
+  };
 
   const fEditAndSave = () => {
     setEditAndSave(!editAndSave);

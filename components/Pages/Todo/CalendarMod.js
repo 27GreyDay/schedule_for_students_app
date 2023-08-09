@@ -3,15 +3,15 @@ import { Modal, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-na
 import { COLORS } from '../../../constants/theme';
 import GenerateCalendar from './GenerateCalendar';
 
-const weeks = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
-const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+const weeks = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 const CalendarMod = props => {
 
   const today = new Date()
 
-  const [day, setDay] = useState(today.getDate())
-  const [month, setMonth] = useState(today.getMonth())
-  const [year, setYear] = useState(today.getFullYear())
+  const day = today.getDate()
+  const [month, setMonth] = useState(today.getMonth());
+  const [year, setYear] = useState(today.getFullYear());
 
   const onRight = () => {
     if (month !== 11)
@@ -20,15 +20,16 @@ const CalendarMod = props => {
       setYear(year + 1)
       setMonth(month - 11)
     }
-  }
+  };
+
   const onLeft = () => {
     if (month !== 0)
       setMonth(month - 1)
     else {
       setYear(year - 1)
       setMonth(month + 11)
-  }
-  }
+    }
+  };
 
   return (
     <Modal

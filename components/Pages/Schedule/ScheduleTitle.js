@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TouchableOpacity, Animated, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 import WarningMod from './WarningMod';
 import { useState } from 'react';

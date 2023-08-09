@@ -13,21 +13,13 @@ const Todo = props => {
   const [tasks, setTasks] = useState([])
 
   const saveData = async (data) => {
-    try {
-      await AsyncStorage.setItem('tasksData', JSON.stringify(data));
-    } catch (error) {
-      console.log('Ошибка при сохранении данных:', error);
-    }
+    await AsyncStorage.setItem('tasksData', JSON.stringify(data));
   };
 
   const loadTasksData = async () => {
-    try {
-      const data = await AsyncStorage.getItem('tasksData');
-      if (data !== null) {
-        return JSON.parse(data);
-      }
-    } catch (error) {
-      console.log('Ошибка при загрузке данных:', error);
+    const data = await AsyncStorage.getItem('tasksData');
+    if (data !== null) {
+      return JSON.parse(data);
     }
     return []; // Возвращаем пустой массив, если данных нет
   };
